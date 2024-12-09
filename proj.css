@@ -1,0 +1,343 @@
+* {
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.nav-1 {
+    display: flex;
+}
+
+.bg {
+    background-image: url("https://st3.depositphotos.com/9842262/14078/i/450/depositphotos_140788408-stock-photo-black-gradient-background-dark-gray.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.bg-1{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.nav-one {
+    font-size: 35px;
+    color: #cccfd7;
+    height: 95px;
+    display: block;
+    font-family: Trebuchet, arial, sans-serif;
+    margin: 0 0 20px 15px;
+}
+
+.nav-1 {
+    justify-content: space-around;
+}
+
+#p2 {
+    font-size: 16px;
+    margin-top: -20px;
+    color: #cccfd7;
+}
+
+.nav-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#in-1 {
+    width: 250px;
+    height: 25px;
+}
+
+#bt-1 {
+    margin-left: 10px;
+    display: block;
+    width: 23%;
+    float: right;
+    height: 26px;
+    background-color: #202228;
+    color: #989eae;
+    font-size: 14px;
+    font-weight: bold;
+    border-top-width: 1px;
+    border-left-width: 1px;
+}
+
+.ul-1 {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    width: auto;
+    height: 50px;
+    color: #989eae;
+    display: flex;
+    margin: 80px;
+    background: #070707;
+    border: 1px solid whitesmoke;
+    font-family: Trebuchet, arial, sans-serif;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    bottom: 50px;
+}
+
+.ul-1 li {
+    cursor: pointer;
+    justify-content: center;
+}
+
+.ul-1 li:hover {
+    color: white;
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: black;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.258);
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.mainbody {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    background-color: black;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    width: 900px;
+    justify-content: center;
+    height: auto;
+    margin: 180px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: auto;
+    margin: 10px 8px;
+    justify-content: space-evenly;
+}
+
+
+
+.types {
+    background-color: rgba(222, 218, 218, 0.365);
+    width: 990px;
+    height: 40px;
+    
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.types p {
+    font-weight: 500px;
+    font: bold;
+    margin: 5px;
+    font-size: 1.5rem;
+    text-align: center;
+    height: auto;
+}
+
+#toggle {
+    position: relative;
+    display: inline-block;
+    width: 70px;
+    height: 30px;
+    background-color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.color-change{
+    display: flex;
+    margin-left: 10px;
+}
+
+.toggle-circle {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    height: 20px;
+    width: 20px;
+    background-color: black;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transform: scale(1.1);
+    transition: left 0.3s ease, background-color 0.3s ease;
+}
+/* Smooth transition for background color */
+body {
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  
+  /* Dark mode styles */
+  body.dark-mode {
+    background-color: #333;
+    color: white;
+  }
+  
+  /* Mode icon */
+  .mode-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  
+  .mode-icon i {
+    font-size: 24px;
+    color: white;
+  }
+  
+  /* Checkbox styling */
+  #toggle {
+    position: relative;
+  }
+  
+  input[type="checkbox"] {
+    visibility: hidden;
+  }
+  
+  .toggle-circle {
+    position: absolute;
+    
+    background-color: black;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  input[type="checkbox"]:checked + .toggle-circle {
+    transform: translateX(30px);
+    background-color: #444;
+  }
+  
+.devara{
+    background-color: black;
+    color: white;
+    height: 300px;
+}
+#devara{
+    background-color: white;
+    color: black;
+    height: 300px;
+    
+}
+
+#color:checked+.toggle-circle {
+    left: 17px;
+    background-color: white;
+}
+
+#color {
+    display: none;
+}
+#lists{
+    width: 300px;
+    height: max-content;
+    margin-top: 50px;
+    margin-left: -200px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+#li_1{
+    background-color: black;
+    color: white;
+    text-align: center ;
+    border: transparent;
+}
+
+@media (max-width: 512px) {
+    .nav-one {
+        height: 100px;
+        text-align: center;
+    }
+
+    .nav-1 {
+        flex-direction: column;
+    }
+
+    .nav-left {
+        flex-direction: column;
+    }
+
+    .ul-1 {
+        display: flex;
+        flex-wrap: wrap;
+        height: 300px;
+        width: 300px;
+        margin: 60px auto;
+        padding: 10px;
+    }
+
+    .dropdown-content {
+        visibility: hidden;
+    }
+
+    .mainbody {
+        display: flex;
+        width: 325px;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin-left: -3px;
+    }
+
+    .card {
+        width: auto;
+    }
+    .bg-1{
+        display: flex;flex-wrap: wrap;
+        flex-direction: column;
+        
+    }
+    #lists{
+        width: 300px;
+        margin: auto ;
+        margin-top: -120px;
+        margin-right: 192px;
+        align-items: center;
+    }
+    #if{
+        display: none;
+    }
+}

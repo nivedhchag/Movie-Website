@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="./movie logo.png">
+    <title>FLING</title>
+    <link rel="stylesheet" href="upg_movie.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      .ac_mov {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          overflow: hidden;
+      }
+      .card {
+          margin: 10px;
+          height: auto;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="nav-wrapper">
+      <div class="container">
+        <div class="nav">
+          <!-- Logo -->
+          <a href="#" class="logo">
+            <i class='bx bx-movie-play bx-tada main-color'></i>Fl<span class="main-color">i</span>nG
+          </a>
+          <!-- Navigation Menu -->
+          <ul class="nav-menu" id="nav-menu">
+            <li><a href="upg_movie.html">Home</a></li>
+            <li><a href="#" onclick="displayActionMovies()">Action</a></li>
+            <li><a href="#" onclick="displayRomanceMovies()">Romance</a></li>
+            <li><a href="#" onclick="displayComedyMovies()">Comedy</a></li>
+            <li><a href="#">About</a></li>
+            <li><input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></li>
+            <li><button class="btn btn-outline-success" type="submit" onclick="filterMovies()">Search</button></li>
+          </ul>
+          <div id="movieList"></div>
+        </div>
+      </div>
+    </div>
+
+    <br><br><br><br>
+
+    <div class="ac_mov" id="movie-cards-container"></div>
+
+    <script>
+      const movies = [{
+            title: "The Fault in Our Stars",
+            img: "https://cdn.kinocheck.com/i/9ituszdt4c.jpg",
+            rating: 7.7,
+            duration: "126 mins",
+            quality: "HD",
+            age: "PG-13",
+            genre: "Romance/Drama"
+          },
+  {
+    title: "Pride & Prejudice",
+    img: "https://m.media-amazon.com/images/M/MV5BMTA1NDQ3NTcyOTNeQTJeQWpwZ15BbWU3MDA0MzA4MzE@._V1_.jpg",
+    rating: 7.8,
+    duration: "129 mins",
+    quality: "HD",
+    age: "PG",
+    genre: "Romance/Drama"
+  },
+  {
+    title: "The Vow",
+    img: "https://m.media-amazon.com/images/M/MV5BMjE1OTU5MjU0N15BMl5BanBnXkFtZTcwMzI3OTU5Ng@@._V1_.jpg",
+    rating: 6.8,
+    duration: "104 mins",
+    quality: "HD",
+    age: "PG-13",
+    genre: "Romance/Drama"
+  },
+  {
+    title: "10 Things I Hate About You",
+    img: "https://m.media-amazon.com/images/M/MV5BOTQwYmRhNGQtODI2Mi00ZTRlLTk0Y2QtY2NkNjE1MGNhNTgwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    rating: 7.3,
+    duration: "97 mins",
+    quality: "HD",
+    age: "PG-13",
+    genre: "Romance/Comedy"
+  },
+  {
+    title: "Notting Hill",
+    img: "https://m.media-amazon.com/images/M/MV5BZjY3YWI5OTMtYTdlNy00ZTZiLWEwYjItN2M1MGVkMDM4ZDExXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    rating: 7.1,
+    duration: "124 mins",
+    quality: "HD",
+    age: "PG",
+    genre: "Romance/Comedy"
+  },
+  {
+    title: "La La Land",
+    img: "https://m.media-amazon.com/images/M/MV5BMzUzNDM2NzM2MV5BMl5BanBnXkFtZTgwNTM3NTg4OTE@._V1_.jpg",
+    rating: 8.0,
+    duration: "128 mins",
+    quality: "HD",
+    age: "PG-13",
+    genre: "Romance/Drama"
+  },
+  {
+    title: "A Walk to Remember",
+    img: "https://m.media-amazon.com/images/M/MV5BYjkxZWE0YjMtYTk2OS00ZmFjLTk2YjEtY2M3MGY4MzE4MGNkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    rating: 7.4,
+    duration: "101 mins",
+    quality: "HD",
+    age: "PG",
+    genre: "Romance/Drama"
+  },
+        {
+          title: "Oppenheimer",
+          img: "https://m.media-amazon.com/images/M/MV5BN2ZmYzBiNWUtNTZlOC00YTc1LTk4NDYtYTdjMjE3ZTk0Zjg3XkEyXkFqcGc@._V1_.jpg",
+          rating: 9.3,
+          duration: "180 mins",
+          quality: "HD",
+          age: "16+",
+          genre: "Biography/Drama",
+        },
+        {
+          title: "Kantara",
+          img: "https://m.media-amazon.com/images/M/MV5BNWE4MzdmNzMtYzM1Mi00MDVmLTg1NGMtODhjNjgwNGQ1ODgyXkEyXkFqcGc@._V1_.jpg",
+          rating: 8.9,
+          duration: "148 mins",
+          quality: "HD",
+          age: "16+",
+          genre: "Action/Thriller",
+        },
+        {
+          title: "Pushpa: The Rule",
+          img: "https://m.media-amazon.com/images/M/MV5BMWI5OGQyODgtYTQ1NC00ZjE0LTgwMzgtZjk2ZDU3YjNhMDAwXkEyXkFqcGc@._V1_.jpg",
+          rating: 6.8,
+          duration: "200 mins",
+          quality: "HD",
+          age: "16+",
+          genre: "Action/Drama",
+        },
+        {
+          title: "Jailer",
+          img: "https://m.media-amazon.com/images/M/MV5BMmM3YTNmYTMtNGY3Zi00NzJjLThiN2ItMDQ5ODQ4YmFlY2ZiXkEyXkFqcGc@._V1_.jpg",
+          rating: 9.2,
+          duration: "168 mins",
+          quality: "HD",
+          age: "16+",
+          genre: "Action/Drama",
+        },
+        {
+          title: "Leo",
+          img: "https://m.media-amazon.com/images/M/MV5BMTg5OGRhNmItODNiMi00MTZhLWFjYmUtYWNiM2RiNjIwMzZkXkEyXkFqcGc@._V1_.jpg",
+          rating: 9.1,
+          duration: "164 mins",
+          quality: "HD",
+          age: "16+",
+          genre: "Action/Thriller",
+        },{
+    title: "Deadpool",
+    img: "https://wallpapercat.com/w/full/e/8/e/182213-1080x2280-samsung-hd-deadpool-background.jpg",
+    rating: 8.0,
+    duration: "108 mins",
+    quality: "HD",
+    age: "R",
+    genre: "Action/Comedy"
+  },
+  {
+    title: "The Hangover",
+    img: "https://m.media-amazon.com/images/M/MV5BNDI2MzBhNzgtOWYyOS00NDM2LWE0OGYtOGQ0M2FjMTI2NTllXkEyXkFqcGc@._V1_.jpg",
+    rating: 7.7,
+    duration: "100 mins",
+    quality: "HD",
+    age: "R",
+    genre: "Comedy"
+  },
+  {
+    title: "21 Jump Street",
+    img: "https://m.media-amazon.com/images/M/MV5BODZkMjEzM2EtYzQwNi00ZmVjLWI3MTQtMzVkYThhYzM1YzYyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    rating: 7.2,
+    duration: "109 mins",
+    quality: "HD",
+    age: "R",
+    genre: "Action/Comedy"
+  },
+  {
+    title: "Superbad",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnfY-coyYne5dzsaolfK4QzmjV2IGMuPl2dQ&s",
+    rating: 8.0,
+    duration: "113 mins",
+    quality: "HD",
+    age: "R",
+    genre: "Comedy"
+  },
+  {
+    title: "Step Brothers",
+    img: "https://m.media-amazon.com/images/M/MV5BYWNiOGZkOTgtNGMzMC00MDg5LTliM2UtN2VjMDI3N2ViOWE5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    rating: 6.9,
+    duration: "98 mins",
+    quality: "HD",
+    age: "R",
+    genre: "Comedy"
+  },
+  {
+    title: "The Grand Budapest Hotel",
+    img: "https://m.media-amazon.com/images/M/MV5BMzM5NjUxOTEyMl5BMl5BanBnXkFtZTgwNjEyMDM0MDE@._V1_FMjpg_UX1000_.jpg",
+    rating: 8.1,
+    duration: "99 mins",
+    quality: "HD",
+    age: "R",
+    genre: "Comedy/Drama"
+  },
+  {
+    title: "Anchorman: The Legend of Ron Burgundy",
+    img: "https://m.media-amazon.com/images/I/91TXzLjVV-L.jpg",
+    rating: 7.2,
+    duration: "94 mins",
+    quality: "HD",
+    age: "PG-13",
+    genre: "Comedy"
+  }
+      ];
+
+      // Function to display action movies
+      async function displayActionMovies() {
+        const container = document.getElementById("movie-cards-container");
+        container.innerHTML = ''; // Clear the previous movie cards
+
+        const actionMovies = movies.filter(movie => movie.genre.includes('Action'));
+
+        actionMovies.forEach(movie => {
+          const movieCard = `
+            <div class="card" style="width: 18rem;">
+              <img src="${movie.img}" class="card-img-top" alt="${movie.title}">
+              <div class="card-body">
+                <h5 class="card-title">${movie.title}</h5>
+                <p class="card-text">
+                  Rating: ${movie.rating} <br>
+                  Duration: ${movie.duration} <br>
+                  Quality: ${movie.quality} <br>
+                  Age: ${movie.age} <br>
+                  Genre: ${movie.genre}
+                </p>
+                <a href="#" class="btn btn-primary">Download</a>
+              </div>
+            </div>
+          `;
+          container.innerHTML += movieCard;
+        });
+      }
+
+      // Function to dynamically display romance movies
+      async function displayRomanceMovies() {
+        const container = document.getElementById("movie-cards-container");
+        container.innerHTML = ''; // Clear the previous movie cards
+
+        const romanceMovies = [
+          {
+            title: "The Fault in Our Stars",
+            img: "https://cdn.kinocheck.com/i/9ituszdt4c.jpg",
+            rating: 7.7,
+            duration: "126 mins",
+            quality: "HD",
+            age: "PG-13",
+            genre: "Romance/Drama"
+          },
+  {
+    title: "La La Land",
+    img: "https://m.media-amazon.com/images/M/MV5BMzUzNDM2NzM2MV5BMl5BanBnXkFtZTgwNTM3NTg4OTE@._V1_.jpg",
+    rating: 8.0,
+    duration: "128 mins",
+    quality: "HD",
+    age: "PG-13",
+    genre: "Romance/Drama"
+  },
+  {
+    title: "Pride & Prejudice",
+    img: "https://m.media-amazon.com/images/M/MV5BMTA1NDQ3NTcyOTNeQTJeQWpwZ15BbWU3MDA0MzA4MzE@._V1_.jpg",
+    rating: 7.8,
+    duration: "129 mins",
+    quality: "HD",
+    age: "PG",
+    genre: "Romance/Drama"
+  },
+  {
+    title: "A Walk to Remember",
+    img: "https://m.media-amazon.com/images/M/MV5BYjkxZWE0YjMtYTk2OS00ZmFjLTk2YjEtY2M3MGY4MzE4MGNkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    rating: 7.4,
+    duration: "101 mins",
+    quality: "HD",
+    age: "PG",
+    genre: "Romance/Drama"
+  },
+  {
+    title: "The Vow",
+    img: "https://m.media-amazon.com/images/M/MV5BMjE1OTU5MjU0N15BMl5BanBnXkFtZTcwMzI3OTU5Ng@@._V1_.jpg",
+    rating: 6.8,
+    duration: "104 mins",
+    quality: "HD",
+    age: "PG-13",
+    genre: "Romance/Drama"
+  },
+  {
+    title: "10 Things I Hate About You",
+    img: "https://m.media-amazon.com/images/M/MV5BOTQwYmRhNGQtODI2Mi00ZTRlLTk0Y2QtY2NkNjE1MGNhNTgwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    rating: 7.3,
+    duration: "97 mins",
+    quality: "HD",
+    age: "PG-13",
+    genre: "Romance/Comedy"
+  },
+  {
+    title: "Notting Hill",
+    img: "https://m.media-amazon.com/images/M/MV5BZjY3YWI5OTMtYTdlNy00ZTZiLWEwYjItN2M1MGVkMDM4ZDExXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    rating: 7.1,
+    duration: "124 mins",
+    quality: "HD",
+    age: "PG",
+    genre: "Romance/Comedy"
+  } ];
+
+        romanceMovies.forEach(movie => {
+          const movieCard = `
+            <div class="card" style="width: 18rem;">
+              <img src="${movie.img}" class="card-img-top" alt="${movie.title}">
+              <div class="card-body">
+                <h5 class="card-title">${movie.title}</h5>
+                <p class="card-text">
+                  Rating: ${movie.rating} <br>
+                  Duration: ${movie.duration} <br>
+                  Quality: ${movie.quality} <br>
+                  Age: ${movie.age} <br>
+                  Genre: ${movie.genre}
+                </p>
+                <a href="#" class="btn btn-primary">Download</a>
+              </div>
+            </div>
+          `;
+          container.innerHTML += movieCard;
+        });
+      }
+
+      // Function to dynamically display comedy movies
+      async function displayComedyMovies() {
+        const container = document.getElementById("movie-cards-container");
+        container.innerHTML = ''; // Clear the previous movie cards
+
+        const comedyMovies = [
+  {
+    title: "Deadpool",
+    img: "https://wallpapercat.com/w/full/e/8/e/182213-1080x2280-samsung-hd-deadpool-background.jpg",
+    rating: 8.0,
+    duration: "108 mins",
+    quality: "HD",
+    age: "R",
+    genre: "Action/Comedy"
+  },
+  {
+    title: "The Hangover",
+    img: "https://m.media-amazon.com/images/M/MV5BNDI2MzBhNzgtOWYyOS00NDM2LWE0OGYtOGQ0M2FjMTI2NTllXkEyXkFqcGc@._V1_.jpg",
+    rating: 7.7,
+    duration: "100 mins",
+    quality: "HD",
+    age: "R",
+    genre: "Comedy"
+  },
+  {
+    title: "21 Jump Street",
+    img: "https://m.media-amazon.com/images/M/MV5BODZkMjEzM2EtYzQwNi00ZmVjLWI3MTQtMzVkYThhYzM1YzYyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    rating: 7.2,
+    duration: "109 mins",
+    quality: "HD",
+    age: "R",
+    genre: "Action/Comedy"
+  },
+  {
+    title: "Superbad",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnfY-coyYne5dzsaolfK4QzmjV2IGMuPl2dQ&s",
+    rating: 8.0,
+    duration: "113 mins",
+    quality: "HD",
+    age: "R",
+    genre: "Comedy"
+  },
+  {
+    title: "Step Brothers",
+    img: "https://m.media-amazon.com/images/M/MV5BYWNiOGZkOTgtNGMzMC00MDg5LTliM2UtN2VjMDI3N2ViOWE5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    rating: 6.9,
+    duration: "98 mins",
+    quality: "HD",
+    age: "R",
+    genre: "Comedy"
+  },
+  {
+    title: "The Grand Budapest Hotel",
+    img: "https://m.media-amazon.com/images/M/MV5BMzM5NjUxOTEyMl5BMl5BanBnXkFtZTgwNjEyMDM0MDE@._V1_FMjpg_UX1000_.jpg",
+    rating: 8.1,
+    duration: "99 mins",
+    quality: "HD",
+    age: "R",
+    genre: "Comedy/Drama"
+  },
+  {
+    title: "Anchorman: The Legend of Ron Burgundy",
+    img: "https://m.media-amazon.com/images/I/91TXzLjVV-L.jpg",
+    rating: 7.2,
+    duration: "94 mins",
+    quality: "HD",
+    age: "PG-13",
+    genre: "Comedy"
+  }
+];
+
+
+        comedyMovies.forEach(movie => {
+          const movieCard = `
+            <div class="card" style="width: 18rem;">
+              <img src="${movie.img}" class="card-img-top" alt="${movie.title}">
+              <div class="card-body">
+                <h5 class="card-title">${movie.title}</h5>
+                <p class="card-text">
+                  Rating: ${movie.rating} <br>
+                  Duration: ${movie.duration} <br>
+                  Quality: ${movie.quality} <br>
+                  Age: ${movie.age} <br>
+                  Genre: ${movie.genre}
+                </p>
+                <a href="#" class="btn btn-primary">Download</a>
+              </div>
+            </div>
+          `;
+          container.innerHTML += movieCard;
+        });
+      }
+      function filterMovies() {
+    const searchQuery = document.getElementById("searchInput").value.toLowerCase();
+    const container = document.getElementById("movie-cards-container");
+
+    // Clear the previous movie cards
+    container.innerHTML = '';
+
+    // Filter movies based on the search query
+    const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchQuery));
+
+    // If no movies found, display a message
+    if (filteredMovies.length === 0) {
+      container.innerHTML = "<p>No movies found.</p>";
+    } else {
+      // Display filtered movie cards
+      filteredMovies.forEach(movie => {
+        const movieCard = `
+          <div class="card" style="width: 18rem;">
+            <img src="${movie.img}" class="card-img-top" alt="${movie.title}">
+            <div class="card-body">
+              <h5 class="card-title">${movie.title}</h5>
+              <p class="card-text">
+                Rating: ${movie.rating} <br>
+                Duration: ${movie.duration} <br>
+                Quality: ${movie.quality} <br>
+                Age: ${movie.age} <br>
+                Genre: ${movie.genre}
+              </p>
+              <a href="#" class="btn btn-primary">Download</a>
+            </div>
+          </div>
+        `;
+        container.innerHTML += movieCard;
+      });
+    }
+  }
+</script>
+    </script>
+  </body>
+</html>
