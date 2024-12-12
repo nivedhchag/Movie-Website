@@ -1,0 +1,545 @@
+:root {
+  --text-color: #ffffff;
+  --main-color: #ff0035;
+  --nav-height: 60px;
+}
+
+.nav-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  background-color: #000000; /* Navbar background color */
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.logo:hover {
+  color: red;
+}
+
+.nav-menu {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li ~ li {
+  margin-left: 30px;
+}
+
+.nav-menu a {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.nav-menu a:hover {
+  color: #0077B5;
+}
+
+@keyframes slideFromTop {
+  0% {
+    transform: translateY(-30px); 
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0); 
+    opacity: 1; 
+  }
+}
+
+
+.carousel-caption h5, 
+.carousel-caption .movie-info1, 
+.carousel-caption .movie-info2, 
+.carousel-caption .movie-info3 {
+  opacity: 0; 
+  transform: translateY(-30px); 
+}
+
+
+.carousel-item.active .carousel-caption h5 {
+  animation: slideFromTop 0.3s ease-out forwards; 
+  animation-delay: 0.2s; 
+}
+
+.carousel-item.active .carousel-caption .movie-info1 {
+  animation: slideFromTop 0.3s ease-out forwards; 
+  animation-delay: 0.5s; 
+}
+
+.carousel-item.active .carousel-caption .movie-info2 {
+  animation: slideFromTop 0.3s ease-out forwards;
+  animation-delay: 0.7s; 
+}
+
+.carousel-item.active .carousel-caption .movie-info3 {
+  animation: slideFromTop 0.3s ease-out forwards; 
+  animation-delay: 0.9s; 
+}
+
+.btn {
+  padding: 0.25rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-color);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  
+  background: transparent;
+  overflow: hidden;
+}
+
+.btn-hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  color: white;
+  background-color: red;
+  z-index: 0;
+  transition: width 0.3s ease-in-out;
+}
+
+.btn-hover:hover::before {
+  width: 100%;
+}
+
+.btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.carousel-item {
+    position: relative;
+    overflow: hidden; /* Ensures zoomed images stay within bounds */
+    cursor: pointer;
+    height: 500px;
+    
+    
+}
+
+.carousel-item img {
+    width: 100%; /* Image stretches to fit container */
+    height: 500px; /* Maintains aspect ratio */
+    transition: transform 0.3s ease-in-out; /* Smooth zoom effect */
+    filter: brightness(100%);
+        object-fit: cover;
+        
+    
+}
+
+.carousel-item img:hover {
+  
+    transform: scale(1.1); /* Zooms on hover */
+    filter: brightness(50%);
+}
+
+
+.carousel-caption {
+  position: absolute;
+  top: 50%; /* Centers text vertically */
+  left: 50%; /* Centers text horizontally */
+  transform: translate(-50%, -50%);
+  z-index: 2; /* Ensures text appears above the overlay */
+  color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.carousel-caption h5 {
+  position: relative;
+  left: 30%;
+  font-size: 3rem; /* Larger font size */
+  font-weight: bolder;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Add a shadow for better readability */
+}
+
+.movie-info2 {
+  position: relative;
+  left: 16%;
+  font-size: 1rem; /* Subtitle size */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Lighter shadow for subtitle */
+  display: inline-block;
+  margin-top: 10px;
+}
+.movie-info1 {
+  position: relative;
+  left: 10%;
+  font-size: 1rem; /* Subtitle size */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Lighter shadow for subtitle */
+  display: inline-block;
+  margin-top: 10px;
+}
+.movie-info3 {
+  position: relative;
+  left: 25%;
+  font-size: 1rem; /* Subtitle size */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); /* Lighter shadow for subtitle */
+  display: inline-block;
+  margin-top: 10px;
+}
+.image-box {
+  width: auto; /* Make width auto */
+  height: 300px; /* Fit the box height to the image */
+  position: relative; 
+}
+.movie-info span {
+  margin-right: 10px; /* Space between icons and text */
+}
+
+.movie-info .fa {
+  margin-right: 5px; /* Space between icon and text */
+}
+  .checked {
+    color: orange;
+  }
+  .carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: black;
+  }
+  .carousel-control-prev, .carousel-control-next {
+    display: none;
+  }
+ 
+ .card {
+  width: 20%;
+ 
+  position: relative;
+  overflow: hidden;
+  border: transparent;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.card-img-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.movie-item-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.movie-item-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.movie-infos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.movie-info {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.movie-info i {
+  margin-right: 5px;
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.1);
+  filter: brightness(60%);
+}
+
+.card:hover .movie-item-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.carousel-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.carousel-inner {
+  display: flex;
+}
+.d-flex{
+  margin-bottom: 10px;
+  background-color: transparent;
+ 
+}
+.section {
+  background-color: red;
+  padding-top: 80px;
+  height: 800px;
+}
+.section1 {
+  /* margin-top: 1px; */
+  background-color:darkblue;
+  padding-top: 80px;
+  height: 800px;
+}
+
+.section-header1 {
+  margin-bottom: 30px;
+  color: white;
+  text-shadow: 10px 10px 20px black;  padding-left: 20px;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-left: 4px solid red;
+  display: flex;
+  align-items: center;
+}
+.section-header {
+  margin-bottom: 30px;
+  color: white;
+  padding-left: 20px;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-left: 4px solid black;
+  display: flex;
+  align-items: center;
+}
+.carousel-control-prev-icon{
+  border-radius: 50%;
+ 
+}
+
+.carousel-control-next-icon{
+  border-radius: 50%;
+}
+/* Hamburger Menu */
+.ham-burger {
+  color: white;
+  display: none;
+  cursor: pointer;
+}
+
+/* Mobile Menu */
+.nav-menu1 {
+  display: none;
+  list-style-type: none;
+  background-color: black;
+  width: 100%;
+  height: 100vh; /* Full screen height */
+  margin-top: 32px;
+  margin-right: -30px;
+  position: absolute; /* To position it over content */
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-menu1.show {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.nav-menu1 li {
+  margin-bottom: 56px;
+  text-align: left;
+}
+
+.nav-menu1 a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+#toggle {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 30px;
+  background-color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+.color-change{
+  display: flex;
+  margin-left: 10px;
+}
+
+.toggle-circle {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  height: 20px;
+  width: 20px;
+  background-color: black;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transform: scale(1.1);
+  transition: left 0.3s ease, background-color 0.3s ease;
+}
+#color:checked+.toggle-circle {
+  left: 17px;
+  background-color: white;
+}
+/* Checkbox styling */
+#toggle {
+  position: relative;
+}
+
+input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.toggle-circle {
+  position: absolute;
+  
+  background-color: black;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="checkbox"]:checked + .toggle-circle {
+  transform: translateX(30px);
+  background-color: #444;
+}
+
+/* Sign-in button styling */
+#sign {
+  margin-left: 20px;
+}
+
+/* Media query for mobile screens */
+@media (max-width: 512px) {
+  .ham-burger {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+
+  /* Initial hidden state for nav-menu1 */
+  .nav-menu1 {
+    margin-top: 68px;
+    display: none;
+    opacity: 0;
+  }
+
+  /* When menu is toggled, display it */
+  .nav-menu1.active {
+    display: block;
+    opacity: 1;
+  }
+
+  .carousel-caption {
+    margin-left: 40px;
+    text-align: center;
+    padding: 15px; /* Add padding for spacing */
+    position: relative;
+  }
+
+  .carousel-caption h5 {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    line-height: 1.2; /* Adjust the line height */
+  }
+
+  .carousel-caption h6 {
+    font-size: 20px;
+    margin: 5px 0; /* Adds space between the title and subtitle */
+  }
+
+  .movie-info1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .movie-info1 span {
+    font-size: 12px;
+    margin: 5px; /* Spacing between the icons and text */
+  }
+
+  .checked {
+    width: 14px; /* Slightly increase size for better visibility */
+    height: 14px;
+    margin-right: 5px; /* Space between the icon and the text */
+  }
+
+  .carousel-caption button {
+    font-weight: bold;
+    margin-top: 15px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 15px; /* Space below the button */
+  }
+
+  /* Ensure the text and icons fit on smaller screens */
+  .carousel-caption span,
+  .carousel-caption h5,
+  .carousel-caption h6 {
+    word-wrap: break-word; /* Prevents text overflow */
+    text-align: center;
+  }
+
+  .carousel-caption span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .carouselContainer{
+    width: auto;
+}
+.d-flex{
+  display: flex;
+  flex-direction: column;
+  
+}
+.card{
+  width: 100%;
+}
+
+}

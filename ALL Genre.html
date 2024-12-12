@@ -10,467 +10,459 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
+      .nav-wrapper {
+     
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 99;
+  background-color: black; /* Navbar background color */
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 900;
+  color:white;
+  text-decoration: none;
+}
+
+.logo:hover {
+  color: red;
+}
+
+.nav-menu {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li ~ li {
+  margin-left: 30px;
+  color: white;
+}
+
+.nav-menu a {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.nav-menu a:hover {
+  color: #0077B5;
+}
+
+      .image-box {
+        width: 550px;
+        overflow: hidden;
+        height: 500px;
+      }
       .ac_mov {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
       }
       .card {
-          margin: 10px;
-          height: auto;
+        transition: transform 0.3s, box-shadow 0.3s;
+        overflow: hidden;
+        margin: 10px;
+        height: auto;
+        width: 300px;
       }
+      .card img {
+        height: 500px;
+        width: 300px  ;
+      }
+      .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+      .pagination button {
+        margin: 0 5px;
+        padding: 10px 20px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .pagination button:disabled {
+        background-color: #cccccc;
+        cursor: not-allowed;
+      }
+      .fav-icon {
+        cursor: pointer;
+        font-size: 24px;
+        color: #007bff;
+      }
+      .fav-count {
+        font-size: 18px;
+        color: #007bff;
+      }
+      .hamburger{
+       display: none;
+        
+      }
+      #toggle {
+  position: relative;
+  top: 5px;
+  display: inline-block;
+  width: 70px;
+  height: 30px;
+  background-color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+/* Hide the checkbox */
+#toggle input {
+  display: none;
+}
+
+.color-change {
+  display: flex;
+  margin-left: 10px;
+}
+
+.toggle-circle {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  height: 20px;
+  width: 20px;
+  background-color: black;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transform: scale(1.1);
+  transition: left 0.3s ease, background-color 0.3s ease;
+}
+
+/* Move the circle when checkbox is checked */
+#toggle input:checked + .toggle-circle {
+  left: 45px;
+  background-color: white;
+}
+.hamburger{
+  color: red;
+}
+      @media (max-width: 768px) {
+        
+        .image-box {
+          width: 100%;
+          height: auto;
+        }
+        .hamburger{
+        display: block;
+        }
+        .nav-menu li{
+          display: none;
+
+        }
+       
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 45px;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  .nav-menu li {
+    margin: 15px 0;
+    display: block;
+    text-align: center;
+    font-size: 20px;
+  }
+  .nav-menu li a {
+    color: white;
+    text-decoration: none;
+  }
+  .hamburger svg {
+    cursor: pointer;
+  }
+
+      }
+      .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      
+      
+      @media (max-width: 512px) {
+        .hamburger{
+        display: block;
+        }
+        .nav-menu li{
+          display: none;
+
+        }
+       
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  .nav-menu li {
+    margin: 15px 0;
+    display: block;
+    text-align: center;
+    font-size: 20px;
+  }
+  .nav-menu li a {
+    color: white;
+    text-decoration: none;
+  }
+  .hamburger svg {
+    cursor: pointer;
+  }
+
+
+      }
+        
       
     </style>
   </head>
   <body>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper" id="nav-w">
       <div class="container">
         <div class="nav">
-          <!-- Logo -->
-          <a href="#" class="logo">
-            <i class='bx bx-movie-play bx-tada main-color'></i>Fl<span class="main-color">i</span>nG
+          <a href="#" class="logo" id="log">
+            <i class='bx bx-movie-play bx-tada main-color'></i>Fl<span id="col" class="main-color">i</span>nG
           </a>
-          <!-- Navigation Menu -->
           <ul class="nav-menu" id="nav-menu">
-            <li><a href="upg_movie.html">Home</a></li>
-            <li><a href="#" onclick="displayActionMovies()">Action</a></li>
-            <li><a href="#" onclick="displayRomanceMovies()">Romance</a></li>
-            <li><a href="#" onclick="displayComedyMovies()">Comedy</a></li>
-            <li><a href="#">About</a></li>
-            <li><input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></li>
-            <li><button class="btn btn-outline-success" type="submit" onclick="filterMovies()">Search</button></li>
+            <li><label id="toggle">
+              <input id="color" type="checkbox" onclick="toggleCircle()">
+              <span class="toggle-circle"></span>
+            </label></li>
+            <li><a id="let" href="MOVIE_WEBSITE.html">Home</a></li>
+            <li class="nav-item">
+              <a id="let1" href="#" onclick="filterGenre('Action')">Action</a>
+            </li>
+            <li><a id="let2" href="#" onclick="filterGenre('Romance')">Romance</a></li>
+            <li><a id="let3" href="#" onclick="filterGenre('Comedy')">Comedy</a></li>
+            <li><a id="let4" href="#">About</a></li>
+            <li><input id="searchInput" class="form-control me-2" type="search" placeholder="Search for movies" aria-label="Search"></li>
+            <li><button id="green" class="btn btn-outline-success" type="submit" onclick="filterMovies()">Search</button></li>
+            <!-- Favorite Icon -->
+            <li><i class="fa fa-heart fav-icon" onclick="toggleFavorites()"></i></li>
+            <!-- Dynamic Favorites Count -->
+            <li><span id="favCount" class="fav-count">Favorites: 0</span></li>
+            
           </ul>
-          <div id="movieList"></div>
+          
+          <div class="hamburger" >
+            <svg id="burger" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+            </svg>
+           
+          </div>
         </div>
       </div>
+      
     </div>
 
     <br><br><br><br>
 
     <div class="ac_mov" id="movie-cards-container"></div>
 
+    <div class="pagination" id="pagination-container"></div>
+
     <script>
-      const movies = [{
-            title: "The Fault in Our Stars",
-            img: "https://cdn.kinocheck.com/i/9ituszdt4c.jpg",
-            rating: 7.7,
-            duration: "126 mins",
-            quality: "HD",
-            age: "PG-13",
-            genre: "Romance/Drama"
-          },
-  {
-    title: "Pride & Prejudice",
-    img: "https://m.media-amazon.com/images/M/MV5BMTA1NDQ3NTcyOTNeQTJeQWpwZ15BbWU3MDA0MzA4MzE@._V1_.jpg",
-    rating: 7.8,
-    duration: "129 mins",
-    quality: "HD",
-    age: "PG",
-    genre: "Romance/Drama"
-  },
-  {
-    title: "The Vow",
-    img: "https://m.media-amazon.com/images/M/MV5BMjE1OTU5MjU0N15BMl5BanBnXkFtZTcwMzI3OTU5Ng@@._V1_.jpg",
-    rating: 6.8,
-    duration: "104 mins",
-    quality: "HD",
-    age: "PG-13",
-    genre: "Romance/Drama"
-  },
-  {
-    title: "10 Things I Hate About You",
-    img: "https://m.media-amazon.com/images/M/MV5BOTQwYmRhNGQtODI2Mi00ZTRlLTk0Y2QtY2NkNjE1MGNhNTgwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-    rating: 7.3,
-    duration: "97 mins",
-    quality: "HD",
-    age: "PG-13",
-    genre: "Romance/Comedy"
-  },
-  {
-    title: "Notting Hill",
-    img: "https://m.media-amazon.com/images/M/MV5BZjY3YWI5OTMtYTdlNy00ZTZiLWEwYjItN2M1MGVkMDM4ZDExXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-    rating: 7.1,
-    duration: "124 mins",
-    quality: "HD",
-    age: "PG",
-    genre: "Romance/Comedy"
-  },
-  {
-    title: "La La Land",
-    img: "https://m.media-amazon.com/images/M/MV5BMzUzNDM2NzM2MV5BMl5BanBnXkFtZTgwNTM3NTg4OTE@._V1_.jpg",
-    rating: 8.0,
-    duration: "128 mins",
-    quality: "HD",
-    age: "PG-13",
-    genre: "Romance/Drama"
-  },
-  {
-    title: "A Walk to Remember",
-    img: "https://m.media-amazon.com/images/M/MV5BYjkxZWE0YjMtYTk2OS00ZmFjLTk2YjEtY2M3MGY4MzE4MGNkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-    rating: 7.4,
-    duration: "101 mins",
-    quality: "HD",
-    age: "PG",
-    genre: "Romance/Drama"
-  },
-        {
-          title: "Oppenheimer",
-          img: "https://m.media-amazon.com/images/M/MV5BN2ZmYzBiNWUtNTZlOC00YTc1LTk4NDYtYTdjMjE3ZTk0Zjg3XkEyXkFqcGc@._V1_.jpg",
-          rating: 9.3,
-          duration: "180 mins",
-          quality: "HD",
-          age: "16+",
-          genre: "Biography/Drama",
-        },
-        {
-          title: "Kantara",
-          img: "https://m.media-amazon.com/images/M/MV5BNWE4MzdmNzMtYzM1Mi00MDVmLTg1NGMtODhjNjgwNGQ1ODgyXkEyXkFqcGc@._V1_.jpg",
-          rating: 8.9,
-          duration: "148 mins",
-          quality: "HD",
-          age: "16+",
-          genre: "Action/Thriller",
-        },
-        {
-          title: "Pushpa: The Rule",
-          img: "https://m.media-amazon.com/images/M/MV5BMWI5OGQyODgtYTQ1NC00ZjE0LTgwMzgtZjk2ZDU3YjNhMDAwXkEyXkFqcGc@._V1_.jpg",
-          rating: 6.8,
-          duration: "200 mins",
-          quality: "HD",
-          age: "16+",
-          genre: "Action/Drama",
-        },
-        {
-          title: "Jailer",
-          img: "https://m.media-amazon.com/images/M/MV5BMmM3YTNmYTMtNGY3Zi00NzJjLThiN2ItMDQ5ODQ4YmFlY2ZiXkEyXkFqcGc@._V1_.jpg",
-          rating: 9.2,
-          duration: "168 mins",
-          quality: "HD",
-          age: "16+",
-          genre: "Action/Drama",
-        },
-        {
-          title: "Leo",
-          img: "https://m.media-amazon.com/images/M/MV5BMTg5OGRhNmItODNiMi00MTZhLWFjYmUtYWNiM2RiNjIwMzZkXkEyXkFqcGc@._V1_.jpg",
-          rating: 9.1,
-          duration: "164 mins",
-          quality: "HD",
-          age: "16+",
-          genre: "Action/Thriller",
-        },{
-    title: "Deadpool",
-    img: "https://wallpapercat.com/w/full/e/8/e/182213-1080x2280-samsung-hd-deadpool-background.jpg",
-    rating: 8.0,
-    duration: "108 mins",
-    quality: "HD",
-    age: "R",
-    genre: "Action/Comedy"
-  },
-  {
-    title: "The Hangover",
-    img: "https://m.media-amazon.com/images/M/MV5BNDI2MzBhNzgtOWYyOS00NDM2LWE0OGYtOGQ0M2FjMTI2NTllXkEyXkFqcGc@._V1_.jpg",
-    rating: 7.7,
-    duration: "100 mins",
-    quality: "HD",
-    age: "R",
-    genre: "Comedy"
-  },
-  {
-    title: "21 Jump Street",
-    img: "https://m.media-amazon.com/images/M/MV5BODZkMjEzM2EtYzQwNi00ZmVjLWI3MTQtMzVkYThhYzM1YzYyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-    rating: 7.2,
-    duration: "109 mins",
-    quality: "HD",
-    age: "R",
-    genre: "Action/Comedy"
-  },
-  {
-    title: "Superbad",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnfY-coyYne5dzsaolfK4QzmjV2IGMuPl2dQ&s",
-    rating: 8.0,
-    duration: "113 mins",
-    quality: "HD",
-    age: "R",
-    genre: "Comedy"
-  },
-  {
-    title: "Step Brothers",
-    img: "https://m.media-amazon.com/images/M/MV5BYWNiOGZkOTgtNGMzMC00MDg5LTliM2UtN2VjMDI3N2ViOWE5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-    rating: 6.9,
-    duration: "98 mins",
-    quality: "HD",
-    age: "R",
-    genre: "Comedy"
-  },
-  {
-    title: "The Grand Budapest Hotel",
-    img: "https://m.media-amazon.com/images/M/MV5BMzM5NjUxOTEyMl5BMl5BanBnXkFtZTgwNjEyMDM0MDE@._V1_FMjpg_UX1000_.jpg",
-    rating: 8.1,
-    duration: "99 mins",
-    quality: "HD",
-    age: "R",
-    genre: "Comedy/Drama"
-  },
-  {
-    title: "Anchorman: The Legend of Ron Burgundy",
-    img: "https://m.media-amazon.com/images/I/91TXzLjVV-L.jpg",
-    rating: 7.2,
-    duration: "94 mins",
-    quality: "HD",
-    age: "PG-13",
-    genre: "Comedy"
-  }
-      ];
+      const container = document.getElementById('movie-cards-container');
+      const paginationContainer = document.getElementById('pagination-container');
+      let allMovies = []; // Store all movie data globally
+      let filteredMovies = []; // Store filtered movies (after genre filter)
+      let currentPage = 1; // Track current page
+      let favoriteCount = 0; // Track the number of favorites
 
-      // Function to display action movies
-      async function displayActionMovies() {
-        const container = document.getElementById("movie-cards-container");
-        container.innerHTML = ''; // Clear the previous movie cards
+      // Fetch all movies and store them in the global movies array
+      async function fetchMovies(page = 1, searchQuery = '') {
+        const apiKey = 'ace83b1b'; // Replace with your OMDB API key
+        const url = `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchQuery || 'movie'}&type=movie&page=${page}`;
 
-        const actionMovies = movies.filter(movie => movie.genre.includes('Action'));
+        try {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const movieData = await response.json();
 
-        actionMovies.forEach(movie => {
-          const movieCard = `
-            <div class="card" style="width: 18rem;">
-              <img src="${movie.img}" class="card-img-top" alt="${movie.title}">
-              <div class="card-body">
-                <h5 class="card-title">${movie.title}</h5>
-                <p class="card-text">
-                  Rating: ${movie.rating} <br>
-                  Duration: ${movie.duration} <br>
-                  Quality: ${movie.quality} <br>
-                  Age: ${movie.age} <br>
-                  Genre: ${movie.genre}
-                </p>
-                <a href="#" class="btn btn-primary">Download</a>
-              </div>
-            </div>
-          `;
-          container.innerHTML += movieCard;
-        });
+          if (movieData.Response === 'True') {
+            allMovies = movieData.Search; // Save all movie data
+            filteredMovies = allMovies; // Initially, show all movies
+            displayMovies(filteredMovies);
+            setupPagination(movieData.totalResults, page);
+          } else {
+            container.innerHTML = '<p id="neo">No movies found. Try another search.</p>';
+            paginationContainer.innerHTML = '';
+          }
+        } catch (error) {
+          console.error('Error fetching movie data:', error);
+        }
       }
 
-      // Function to dynamically display romance movies
-      async function displayRomanceMovies() {
-        const container = document.getElementById("movie-cards-container");
-        container.innerHTML = ''; // Clear the previous movie cards
-
-        const romanceMovies = [
-          {
-            title: "The Fault in Our Stars",
-            img: "https://cdn.kinocheck.com/i/9ituszdt4c.jpg",
-            rating: 7.7,
-            duration: "126 mins",
-            quality: "HD",
-            age: "PG-13",
-            genre: "Romance/Drama"
-          },
-  {
-    title: "La La Land",
-    img: "https://m.media-amazon.com/images/M/MV5BMzUzNDM2NzM2MV5BMl5BanBnXkFtZTgwNTM3NTg4OTE@._V1_.jpg",
-    rating: 8.0,
-    duration: "128 mins",
-    quality: "HD",
-    age: "PG-13",
-    genre: "Romance/Drama"
-  },
-  {
-    title: "Pride & Prejudice",
-    img: "https://m.media-amazon.com/images/M/MV5BMTA1NDQ3NTcyOTNeQTJeQWpwZ15BbWU3MDA0MzA4MzE@._V1_.jpg",
-    rating: 7.8,
-    duration: "129 mins",
-    quality: "HD",
-    age: "PG",
-    genre: "Romance/Drama"
-  },
-  {
-    title: "A Walk to Remember",
-    img: "https://m.media-amazon.com/images/M/MV5BYjkxZWE0YjMtYTk2OS00ZmFjLTk2YjEtY2M3MGY4MzE4MGNkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-    rating: 7.4,
-    duration: "101 mins",
-    quality: "HD",
-    age: "PG",
-    genre: "Romance/Drama"
-  },
-  {
-    title: "The Vow",
-    img: "https://m.media-amazon.com/images/M/MV5BMjE1OTU5MjU0N15BMl5BanBnXkFtZTcwMzI3OTU5Ng@@._V1_.jpg",
-    rating: 6.8,
-    duration: "104 mins",
-    quality: "HD",
-    age: "PG-13",
-    genre: "Romance/Drama"
-  },
-  {
-    title: "10 Things I Hate About You",
-    img: "https://m.media-amazon.com/images/M/MV5BOTQwYmRhNGQtODI2Mi00ZTRlLTk0Y2QtY2NkNjE1MGNhNTgwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-    rating: 7.3,
-    duration: "97 mins",
-    quality: "HD",
-    age: "PG-13",
-    genre: "Romance/Comedy"
-  },
-  {
-    title: "Notting Hill",
-    img: "https://m.media-amazon.com/images/M/MV5BZjY3YWI5OTMtYTdlNy00ZTZiLWEwYjItN2M1MGVkMDM4ZDExXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-    rating: 7.1,
-    duration: "124 mins",
-    quality: "HD",
-    age: "PG",
-    genre: "Romance/Comedy"
-  } ];
-
-        romanceMovies.forEach(movie => {
-          const movieCard = `
-            <div class="card" style="width: 18rem;">
-              <img src="${movie.img}" class="card-img-top" alt="${movie.title}">
+      // Display the filtered movies in card format
+      function displayMovies(movies) {
+        container.innerHTML = movies
+          .map(movie => `  
+            <div class="card">
+              <div class="image-box">
+                <img src="${movie.Poster !== 'N/A' ? movie.Poster : 'placeholder.jpg'}" alt="${movie.Title}">
+              </div>
               <div class="card-body">
-                <h5 class="card-title">${movie.title}</h5>
-                <p class="card-text">
-                  Rating: ${movie.rating} <br>
-                  Duration: ${movie.duration} <br>
-                  Quality: ${movie.quality} <br>
-                  Age: ${movie.age} <br>
-                  Genre: ${movie.genre}
-                </p>
-                <a href="#" class="btn btn-primary">Download</a>
+                <h3 class="card-title">${movie.Title}</h3>
+                <p class="card-text"><strong>Year:</strong> ${movie.Year}</p>
+                <!-- Add to Favorites Button -->
+                <button class="btn btn-outline-success" onclick="addToFavorites()">Add to Favorites</button>
               </div>
             </div>
-          `;
-          container.innerHTML += movieCard;
-        });
+          `)
+          .join('');
       }
 
-      // Function to dynamically display comedy movies
-      async function displayComedyMovies() {
-        const container = document.getElementById("movie-cards-container");
-        container.innerHTML = ''; // Clear the previous movie cards
+      // Setup pagination buttons
+      function setupPagination(totalResults, currentPage) {
+        const totalPages = Math.ceil(totalResults / 10);
+        paginationContainer.innerHTML = '';
 
-        const comedyMovies = [
-  {
-    title: "Deadpool",
-    img: "https://wallpapercat.com/w/full/e/8/e/182213-1080x2280-samsung-hd-deadpool-background.jpg",
-    rating: 8.0,
-    duration: "108 mins",
-    quality: "HD",
-    age: "R",
-    genre: "Action/Comedy"
-  },
-  {
-    title: "The Hangover",
-    img: "https://m.media-amazon.com/images/M/MV5BNDI2MzBhNzgtOWYyOS00NDM2LWE0OGYtOGQ0M2FjMTI2NTllXkEyXkFqcGc@._V1_.jpg",
-    rating: 7.7,
-    duration: "100 mins",
-    quality: "HD",
-    age: "R",
-    genre: "Comedy"
-  },
-  {
-    title: "21 Jump Street",
-    img: "https://m.media-amazon.com/images/M/MV5BODZkMjEzM2EtYzQwNi00ZmVjLWI3MTQtMzVkYThhYzM1YzYyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-    rating: 7.2,
-    duration: "109 mins",
-    quality: "HD",
-    age: "R",
-    genre: "Action/Comedy"
-  },
-  {
-    title: "Superbad",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnfY-coyYne5dzsaolfK4QzmjV2IGMuPl2dQ&s",
-    rating: 8.0,
-    duration: "113 mins",
-    quality: "HD",
-    age: "R",
-    genre: "Comedy"
-  },
-  {
-    title: "Step Brothers",
-    img: "https://m.media-amazon.com/images/M/MV5BYWNiOGZkOTgtNGMzMC00MDg5LTliM2UtN2VjMDI3N2ViOWE5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-    rating: 6.9,
-    duration: "98 mins",
-    quality: "HD",
-    age: "R",
-    genre: "Comedy"
-  },
-  {
-    title: "The Grand Budapest Hotel",
-    img: "https://m.media-amazon.com/images/M/MV5BMzM5NjUxOTEyMl5BMl5BanBnXkFtZTgwNjEyMDM0MDE@._V1_FMjpg_UX1000_.jpg",
-    rating: 8.1,
-    duration: "99 mins",
-    quality: "HD",
-    age: "R",
-    genre: "Comedy/Drama"
-  },
-  {
-    title: "Anchorman: The Legend of Ron Burgundy",
-    img: "https://m.media-amazon.com/images/I/91TXzLjVV-L.jpg",
-    rating: 7.2,
-    duration: "94 mins",
-    quality: "HD",
-    age: "PG-13",
-    genre: "Comedy"
-  }
-];
-
-
-        comedyMovies.forEach(movie => {
-          const movieCard = `
-            <div class="card" style="width: 18rem;">
-              <img src="${movie.img}" class="card-img-top" alt="${movie.title}">
-              <div class="card-body">
-                <h5 class="card-title">${movie.title}</h5>
-                <p class="card-text">
-                  Rating: ${movie.rating} <br>
-                  Duration: ${movie.duration} <br>
-                  Quality: ${movie.quality} <br>
-                  Age: ${movie.age} <br>
-                  Genre: ${movie.genre}
-                </p>
-                <a href="#" class="btn btn-primary">Download</a>
-              </div>
-            </div>
-          `;
-          container.innerHTML += movieCard;
-        });
+        for (let i = 1; i <= totalPages && i <= 5; i++) {
+          const button = document.createElement('button');
+          button.textContent = i;
+          button.disabled = i == currentPage;
+          button.addEventListener('click', () => {
+            fetchMovies(i, document.getElementById('searchInput').value);
+          });
+          paginationContainer.appendChild(button);
+        }
       }
+
+      // Search function
       function filterMovies() {
-    const searchQuery = document.getElementById("searchInput").value.toLowerCase();
-    const container = document.getElementById("movie-cards-container");
+        const searchInput = document.getElementById('searchInput').value;
+        fetchMovies(1, searchInput);
+      }
 
-    // Clear the previous movie cards
-    container.innerHTML = '';
+      // Genre filter function
+      function filterGenre(genre) {
+        const searchInput = genre;
+        fetchMovies(1, searchInput);
+      }
 
-    // Filter movies based on the search query
-    const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchQuery));
+      // Function to toggle favorites view (could be expanded to show favorite movies)
+      function toggleFavorites() {
+        alert(`You have ${favoriteCount} favorite movies.`);
+      }
 
-    // If no movies found, display a message
-    if (filteredMovies.length === 0) {
-      container.innerHTML = "<p>No movies found.</p>";
-    } else {
-      // Display filtered movie cards
-      filteredMovies.forEach(movie => {
-        const movieCard = `
-          <div class="card" style="width: 18rem;">
-            <img src="${movie.img}" class="card-img-top" alt="${movie.title}">
-            <div class="card-body">
-              <h5 class="card-title">${movie.title}</h5>
-              <p class="card-text">
-                Rating: ${movie.rating} <br>
-                Duration: ${movie.duration} <br>
-                Quality: ${movie.quality} <br>
-                Age: ${movie.age} <br>
-                Genre: ${movie.genre}
-              </p>
-              <a href="#" class="btn btn-primary">Download</a>
-            </div>
-          </div>
-        `;
-        container.innerHTML += movieCard;
-      });
-    }
+      // Function to handle adding a movie to favorites and incrementing the count
+      function addToFavorites() {
+        favoriteCount++;
+        document.getElementById('favCount').textContent = `Favorites: ${favoriteCount}`;
+      }
+
+      fetchMovies(); // Initial fetch to load all movies
+      
+  //toggle for dark
+function toggleCircle() {
+
+  
+const checkbox = document.getElementById('color');
+const mainbody = document.querySelector('.mainbody');
+const color_change = document.getElementById('name1')
+let nippon = document.getElementById("devara")
+let sidebox = document.getElementById('lists');
+let li = document.getElementById('li_1')
+
+
+if (checkbox.checked) {
+  document.body.style.backgroundColor = 'black';
+  document.getElementById('nav-w').style.backgroundColor='white'
+  document.getElementById('log').style.color='black'  
+  document.getElementById('let').style.color='black'  
+  document.getElementById('let1').style.color='black'  
+  document.getElementById('let2').style.color='black'  
+  document.getElementById('let3').style.color='black'  
+  document.getElementById('let4').style.color='black'  
+  document.getElementById('og').style.color='red'
+  document.getElementById("neo").style.color='red'
+  
+
+  
+  
+  
+  
+
+
+
+} else {
+    document.body.style.backgroundColor = 'white';
+    document.getElementById('nav-w').style.backgroundColor='black'
+    document.getElementById('log').style.color='white'
+    document.getElementById('let').style.color='white'  
+    document.getElementById('let1').style.color='white'  
+    document.getElementById('let2').style.color='white'  
+    document.getElementById('let3').style.color='white'  
+    document.getElementById('let4').style.color='white'  
+    document.getElementById('let4').style.color='white'  
+    document.getElementById('neo').style.color='red'
+    
+    
+
+ 
+}
+}
+ /// Hamburger menu 
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+const closeIcon = document.querySelector('.close-icon');
+
+hamburger.addEventListener('click', () => {
+  
+  if (navMenu.style.display === 'flex') {
+    navMenu.style.display = 'none'; 
+  } else {
+    navMenu.style.display = 'flex'; 
   }
-</script>
+});
+
+closeIcon.addEventListener('click', () => {
+  navMenu.style.display = 'none'; 
+});
+document.addEventListener('click', (e) => {
+  if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+    navMenu.style.display = 'none';
+  }
+});
+
     </script>
   </body>
 </html>
