@@ -22,6 +22,7 @@
 }
 
 .logo {
+  
   font-size: 2rem;
   font-weight: 900;
   color: var(--text-color);
@@ -79,12 +80,12 @@
 
 .carousel-item.active .carousel-caption h5 {
   animation: slideFromTop 0.3s ease-out forwards; 
-  animation-delay: 0.2s; 
+  
 }
 
 .carousel-item.active .carousel-caption .movie-info1 {
   animation: slideFromTop 0.3s ease-out forwards; 
-  animation-delay: 0.5s; 
+  animation-delay: 0.3s; 
 }
 
 .carousel-item.active .carousel-caption .movie-info2 {

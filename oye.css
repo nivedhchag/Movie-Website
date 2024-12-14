@@ -1,0 +1,88 @@
+body{
+    background-color: #000000;
+}
+
+.container{
+    border: 1px solid rgb(43, 230, 71);
+
+    background-color: rgb(63, 230, 48);
+    width: 1000px;
+    padding: 70px 70px 70px 70px;
+    margin-top: 150px;
+    margin-left: 180px;
+box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+
+}
+
+p{
+    border: 1px solid white;
+    color: gray;
+    background-color: white;
+    padding: 50px 50px 50px 50px;
+    width: 300px;
+    margin: auto;
+    font-size: 15px;
+   
+    
+}
+a:hover{
+    color: red;
+}
+
+.in{
+    padding: 15px 5px 15px 15px;
+    width: 278px;
+    margin: auto;
+    background-color: rgba(107, 107, 107, 0.155);
+    border: 1px solid white;
+    
+}
+.go{
+    padding: 15px 5px 15px 15px;
+    background-color: rgba(107, 107, 107, 0.155);
+    border: 1px solid white;
+    width: 278px;
+    margin: auto;
+}
+
+.button{
+    
+    padding: 10px 5px 10px 5px;
+    width: 299px;
+        align-items: center;
+        background-color: green;
+        color: white;
+        border: 1px solid green;
+        text-align: center;
+        margin: auto;
+        cursor: pointer;
+        font-size: 17px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        
+}
+
+
+a{
+    margin-right:40px;
+    text-decoration: none;
+    color:gray;
+}
+
+a:hover{
+    color: blueviolet;
+}
+
+
+span{
+    width: 100px;
+    color: gray;
+    padding-left: 40px;
+    position: relative;
+    left: -5px;
+}
+.spans{
+    margin-left: -40px;
+    color: rgb(76, 185, 76);
+}
+

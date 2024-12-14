@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="oye.css">
+</head>
+<body>
+    
+    <div class="container">
+        <p>
+            <input title="Enter the Email" id="input" class="in" type="text" placeholder="Email Id">
+            <input title="Enter the Password" id="output" class="go" type="password" placeholder="Password">
+        
+            <button onclick="change()" class="button">Login</button>
+            <br><br>
+            <span>Not Registered?
+                <span id="lo" class="spans"><a style="color: gray; position: relative; left: 30px;" href="/Registration.html">Create an Account</a></span>
+            </span>
+        </p>
+    </div>
+
+    <script>
+        function change() {
+            let x1 = document.getElementById("input").value; 
+            let x2 = document.getElementById("output").value; 
+
+          
+            let regx1 = /^[a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (regx1.test(x1)) {
+                console.log("Valid Email");
+            } else {
+                document.getElementById("input").style.border = "3px solid red";
+            }
+
+         
+            let regx2 = /^[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+            if (regx2.test(x2)) {
+                console.log("Valid Password");
+            } else {
+                document.getElementById("output").style.border = "3px solid red";
+            }
+
+            let users = JSON.parse(localStorage.getItem("Users")) || [];
+
+            
+            let isUserValid = false;
+            for (let i = 0; i < users.length; i++) {
+                if (users[i].Email === x1 && users[i].Password === x2) {
+                    isUserValid = true;
+                    break;
+                }
+            }
+
+            if (isUserValid) {
+                window.location.href = "Homepage.html";  
+            } else {
+                alert("Invalid credentials. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>

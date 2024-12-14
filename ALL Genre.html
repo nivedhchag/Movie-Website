@@ -49,8 +49,6 @@
 }
 
 .nav-menu li ~ li {
-  position: relative;
-top: 5px;
   margin-left: 30px;
   color: white;
 }
@@ -120,7 +118,7 @@ top: 5px;
       }
       #toggle {
   position: relative;
-  top:10px;
+  top: 5px;
   display: inline-block;
   width: 70px;
   height: 30px;
@@ -266,7 +264,7 @@ top: 5px;
               <input id="color" type="checkbox" onclick="toggleCircle()">
               <span class="toggle-circle"></span>
             </label></li>
-            <li><a id="let" href="index.html">Home</a></li>
+            <li><a id="let" href="Homepage.html">Home</a></li>
             <li class="nav-item">
               <a id="let1" href="#" onclick="filterGenre('Action')">Action</a>
             </li>
@@ -302,10 +300,10 @@ top: 5px;
     <script>
       const container = document.getElementById('movie-cards-container');
       const paginationContainer = document.getElementById('pagination-container');
-      let allMovies = []; // Store all movie data globally
-      let filteredMovies = []; // Store filtered movies (after genre filter)
-      let currentPage = 1; // Track current page
-      let favoriteCount = 0; // Track the number of favorites
+      let allMovies = []; 
+      let filteredMovies = []; 
+      let currentPage = 1; 
+      let favoriteCount = 0; 
 
       // Fetch all movies and store them in the global movies array
       async function fetchMovies(page = 1, searchQuery = '') {
@@ -320,8 +318,8 @@ top: 5px;
           const movieData = await response.json();
 
           if (movieData.Response === 'True') {
-            allMovies = movieData.Search; // Save all movie data
-            filteredMovies = allMovies; // Initially, show all movies
+            allMovies = movieData.Search; 
+            filteredMovies = allMovies; 
             displayMovies(filteredMovies);
             setupPagination(movieData.totalResults, page);
           } else {
@@ -333,7 +331,7 @@ top: 5px;
         }
       }
 
-      // Display the filtered movies in card format
+      
       function displayMovies(movies) {
         container.innerHTML = movies
           .map(movie => `  
@@ -342,17 +340,20 @@ top: 5px;
                 <img src="${movie.Poster !== 'N/A' ? movie.Poster : 'placeholder.jpg'}" alt="${movie.Title}">
               </div>
               <div class="card-body">
-                <h3 class="card-title">${movie.Title}</h3>
+                <h3 class="card-title">${movie.Title.length>10? movie.Title.slice(0,10): movie.Title}</h3>
                 <p class="card-text"><strong>Year:</strong> ${movie.Year}</p>
                 <!-- Add to Favorites Button -->
-                <button class="btn btn-outline-success" onclick="addToFavorites()">Add to Favorites</button>
+                <div class='d-flex flex-column' >
+                <button class="btn btn-outline-success mb-3" onclick="addToFavorites()">Add </button>
+                
+                <button class="btn btn-outline-danger" onclick="removefav()">Remove </button>
               </div>
+            </div>
             </div>
           `)
           .join('');
       }
 
-      // Setup pagination buttons
       function setupPagination(totalResults, currentPage) {
         const totalPages = Math.ceil(totalResults / 10);
         paginationContainer.innerHTML = '';
@@ -368,31 +369,38 @@ top: 5px;
         }
       }
 
-      // Search function
+   
       function filterMovies() {
         const searchInput = document.getElementById('searchInput').value;
         fetchMovies(1, searchInput);
       }
 
-      // Genre filter function
       function filterGenre(genre) {
         const searchInput = genre;
         fetchMovies(1, searchInput);
       }
 
-      // Function to toggle favorites view (could be expanded to show favorite movies)
       function toggleFavorites() {
         alert(`You have ${favoriteCount} favorite movies.`);
       }
 
-      // Function to handle adding a movie to favorites and incrementing the count
       function addToFavorites() {
         favoriteCount++;
         document.getElementById('favCount').textContent = `Favorites: ${favoriteCount}`;
       }
 
-      fetchMovies(); // Initial fetch to load all movies
-      
+      fetchMovies(); 
+      function removefav(){
+        if(favoriteCount<=0){
+               favoriteCount=0;
+        }
+        else{
+
+          favoriteCount--;
+        }
+        document.getElementById('favCount').textContent = `Favorites: ${favoriteCount}`;
+
+      }
   //toggle for dark
 function toggleCircle() {
 
