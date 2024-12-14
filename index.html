@@ -10,10 +10,28 @@
     
     <div class="container">
         <p>
+            <!-- Username Input -->
             <input title="Enter the Username" id="input" class="in" type="text" placeholder="Username">
+            <!-- Username Info -->
+            <small id="usernameInfo" style="color: gray; display: block; margin-top: 5px;">
+                Username must contain only letters and hyphens. No numbers or special characters allowed.
+            </small>
+
+            <!-- Email Input -->
             <input title="Enter the Email" id="op" class="in" type="email" placeholder="Email">
+            <!-- Email Info -->
+            <small id="emailInfo" style="color: gray; display: block; margin-top: 5px;">
+                Use a valid email address (e.g., example@domain.com). No spaces, special characters like @, . are required.
+            </small>
+
+            <!-- Password Input -->
             <input title="Enter the Password" id="output" class="go" type="password" placeholder="Password">
-        
+            <!-- Password Info -->
+            <small id="passwordInfo" style="color: gray; display: block; margin-top: 5px;">
+                Password must be 6-16 characters long. Allowed characters: letters (upper/lower case), numbers, and special characters (! @ # $ % ^ & *).
+            </small>
+
+            <!-- Register Button -->
             <button onclick="change()" class="button">Register</button>
             
             <!-- Initially hide the login button -->
@@ -29,9 +47,10 @@
             let x2 = document.getElementById("output").value;
             let x3 = document.getElementById("op").value;
 
-            let regx1 = /^[a-zA-Z\-]+$/;
-            let regx2 = /^[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-            let regx3 = /^[a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            // Validation regular expressions
+            let regx1 = /^[a-zA-Z\-]+$/; // Username - Only letters and hyphens allowed
+            let regx2 = /^[a-zA-Z0-9!@#$%^&*]{6,16}$/; // Password - 6 to 16 characters with allowed characters
+            let regx3 = /^[a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // Email - Valid email format
 
             let validUsername = regx1.test(x1);
             let validPassword = regx2.test(x2);
