@@ -20,41 +20,27 @@
                 margin-bottom: 8px;
             }
         }
-
-        /* Modal Style */
-        .nav-modal {
-            display: none;
+        
+        /* Modal style for mobile menu */
+        .modal {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* semi-transparent background */
-            z-index: 1000; /* Ensures it appears on top */
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none;
             justify-content: center;
             align-items: center;
+            z-index: 1000; /* Make sure the modal overlays other content */
         }
-
-        .nav-modal.active {
-            display: flex;
-        }
-
-        .nav-modal-content {
-            background: #2d2d2d;
+        .modal-content {
+            background-color: #333;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 8px;
             width: 80%;
-            max-width: 300px;
-            text-align: center;
-        }
-
-        .nav-modal-content ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .nav-modal-content ul li {
-            margin: 10px 0;
+            max-width: 400px;
+            z-index: 1001; /* Ensure modal content appears on top */
         }
     </style>
 </head>
@@ -72,17 +58,12 @@
             <li><a href="ALL Genre.html" class="hover:text-yellow-400 transition duration-300">Movies</a></li>
             <li><a href="#" class="hover:text-yellow-400 transition duration-300">Bookings</a></li>
         </ul>
-    </nav>
-
-    <!-- Modal for Mobile Navigation -->
-    <div id="nav-modal" class="nav-modal">
-        <div class="nav-modal-content">
-            <!-- Close Icon -->
-            <div class="text-right">
-                <i id="close-icon" class="fas fa-times text-white text-2xl cursor-pointer"></i>
-            </div>
-            <!-- Menu Items -->
-            <ul>
+    </nav> 
+    
+    <!-- Modal for Hamburger Menu -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <ul class="space-y-4">
                 <li><a href="Homepage.html" class="text-white hover:text-yellow-400">Home</a></li>
                 <li><a href="ALL Genre.html" class="text-white hover:text-yellow-400">Movies</a></li>
                 <li><a href="#" class="text-white hover:text-yellow-400">Bookings</a></li>
@@ -101,16 +82,19 @@
                     <img src="https://assets.gadgets360cdn.com/pricee/assets/product/202306/Pushpa-2_1687776659.jpg" alt="Pushpa" class="w-24 h-32 rounded-lg shadow-lg">
                     <span class="font-medium text-lg text-white">Pushpa: The Rule</span>
                 </div>
+                
                 <!-- Movie Item 2 -->
                 <div class="movie-item flex items-center gap-6 transform transition duration-300 hover:scale-105">
                     <img src="https://m.media-amazon.com/images/M/MV5BMGVmMjdlNzUtNWEzZS00YmM3LWJhM2EtMDkwNTVmMDk0ZmY0XkEyXkFqcGc@._V1_.jpg" alt="KGF" class="w-24 h-32 rounded-lg shadow-lg">
                     <span class="font-medium text-lg text-white">KGF</span>
                 </div>
+
                 <!-- Movie Item 3 -->
                 <div class="movie-item flex items-center gap-6 transform transition duration-300 hover:scale-105">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuKhFfRL8nTknjuGnI7xQ3c3Qkn68cuM9Xtw&s" alt="RRR" class="w-24 h-32 rounded-lg shadow-lg">
                     <span class="font-medium text-lg text-white">RRR</span>
                 </div>
+
                 <!-- Movie Item 4 -->
                 <div class="movie-item flex items-center gap-6 transform transition duration-300 hover:scale-105">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuKhFfRL8nTknjuGnI7xQ3c3Qkn68cuM9Xtw&s" alt="RRR Reloaded" class="w-24 h-32 rounded-lg shadow-lg">
@@ -120,24 +104,83 @@
         </div>
     </div>
 
+    <!-- Booking Section -->
+    <div class="bg-gray-800 shadow-2xl rounded-lg p-6 flex-1 hover:scale-105 transition-transform duration-300">
+        <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2024/07/avengers-doomsday-title-treatment.jpg" alt="avengers-doomsday" class="w-full rounded-lg mb-6 shadow-lg">
+        
+        <!-- Title: Booking will open soon -->
+        <div id="bookingTitle" class="text-center text-xl font-semibold text-teal-400 mb-6">Booking will open soon...</div>
+        
+        <!-- Timer -->
+        <div class="text-center text-3xl font-extrabold text-teal-400 mb-6" id="timer">02:00</div>
+        
+        <!-- Booking Status: Booking Open -->
+        <div id="bookingStatus" class="text-center text-xl font-semibold text-teal-400 mb-6 opacity-0">Booking Open</div>
+        
+        <!-- Booking Button -->
+        <button id="bookingButton" disabled class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-3 rounded-lg opacity-50 cursor-not-allowed transition duration-300 hover:bg-gradient-to-r hover:from-yellow-600 hover:to-orange-600 hover:opacity-100">
+            Book Now
+        </button>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-gray-900 text-white text-center py-4 mt-auto shadow-inner">
-        &copy; 2024 MovieMania. All rights reserved.
+    &copy; 2024 MovieMania. All rights reserved.
     </footer>
 
     <script>
-        // Hamburger menu toggle
-        const hamburgerIcon = document.getElementById('hamburger-icon');
-        const navModal = document.getElementById('nav-modal');
-        const closeIcon = document.getElementById('close-icon');
+    // Countdown Timer
+    let countdownTime = 120; // Time in seconds (2 minutes)
+    const timerElement = document.getElementById('timer');
+    const bookingButton = document.getElementById('bookingButton');
+    const bookingStatus = document.getElementById('bookingStatus'); // New element reference
+    const bookingTitle = document.getElementById('bookingTitle'); // New title element
 
-        hamburgerIcon.addEventListener('click', () => {
-            navModal.classList.add('active'); // Show modal
-        });
+    // Format time function to convert seconds to MM:SS
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
 
-        closeIcon.addEventListener('click', () => {
-            navModal.classList.remove('active'); // Hide modal
-        });
+    // Start the countdown timer
+    function startCountdown() {
+        // Initially set the timer display to 2:00
+        timerElement.textContent = formatTime(countdownTime);
+
+        // Decrement the time every second
+        const interval = setInterval(() => {
+            countdownTime--; // Decrease the countdown time by 1 second
+            timerElement.textContent = formatTime(countdownTime); // Update the display
+
+            if (countdownTime <= 0) {
+                clearInterval(interval); // Stop the countdown when time is up
+                timerElement.textContent = "00:00"; // Show 00:00 when time is over
+                bookingStatus.classList.remove('opacity-0'); // Show the booking status
+                bookingButton.disabled = false; // Enable the booking button
+                bookingButton.classList.remove('opacity-50', 'cursor-not-allowed'); // Remove disabled styling
+                bookingButton.classList.add('opacity-100', 'cursor-pointer'); // Enable pointer and full opacity
+                bookingTitle.textContent = "Booking Now Open!"; // Change the title to indicate booking is open
+            }
+        }, 1000);
+    }
+
+    startCountdown();
+
+    // Toggle Modal for Hamburger Menu
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const modal = document.getElementById('modal');
+
+    hamburgerIcon.addEventListener('click', () => {
+        modal.style.display = 'flex'; // Show the modal
+    });
+
+    // Close modal when clicking outside the modal content
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none'; // Close the modal
+        }
+    });
     </script>
 </body>
 </html>
