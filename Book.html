@@ -7,17 +7,88 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Media Query for Max Width 400px */
+        @media (max-width: 400px) {
+            .movie-item {
+                flex-direction: column;
+                align-items: center; /* Center text below image */
+                text-align: center;
+            }
+
+            .movie-item img {
+                margin-bottom: 8px;
+            }
+        }
+
+        /* Modal Style */
+        .nav-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+            z-index: 1000; /* Ensures it appears on top */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-modal.active {
+            display: flex;
+        }
+
+        .nav-modal-content {
+            background: #2d2d2d;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .nav-modal-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-modal-content ul li {
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body class="bg-gray-900 text-white flex flex-col min-h-screen">
     <!-- Navigation Bar -->
     <nav class="bg-gradient-to-r from-teal-500 to-purple-600 text-white py-4 px-8 flex justify-between items-center shadow-lg rounded-b-lg">
         <div class="text-3xl font-extrabold tracking-wide">MovieMania</div>
-        <ul class="flex space-x-8">
+        <!-- Hamburger Icon -->
+        <div class="hamburger lg:hidden" id="hamburger-icon">
+            <i class="fas fa-bars text-2xl"></i>
+        </div>
+        <!-- Menu List -->
+        <ul class="flex space-x-8 lg:flex hidden" id="nav-menu">
             <li><a href="Homepage.html" class="hover:text-yellow-400 transition duration-300">Home</a></li>
             <li><a href="ALL Genre.html" class="hover:text-yellow-400 transition duration-300">Movies</a></li>
             <li><a href="#" class="hover:text-yellow-400 transition duration-300">Bookings</a></li>
         </ul>
     </nav>
+
+    <!-- Modal for Mobile Navigation -->
+    <div id="nav-modal" class="nav-modal">
+        <div class="nav-modal-content">
+            <!-- Close Icon -->
+            <div class="text-right">
+                <i id="close-icon" class="fas fa-times text-white text-2xl cursor-pointer"></i>
+            </div>
+            <!-- Menu Items -->
+            <ul>
+                <li><a href="Homepage.html" class="text-white hover:text-yellow-400">Home</a></li>
+                <li><a href="ALL Genre.html" class="text-white hover:text-yellow-400">Movies</a></li>
+                <li><a href="#" class="text-white hover:text-yellow-400">Bookings</a></li>
+            </ul>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <div class="container mx-auto flex flex-wrap py-8 px-4 gap-12">
@@ -25,38 +96,27 @@
         <div class="bg-gray-800 shadow-2xl rounded-lg p-6 flex-1 overflow-hidden hover:scale-105 transition-transform duration-300">
             <h2 class="text-2xl font-semibold mb-6 text-teal-400">Upcoming Movies</h2>
             <div class="space-y-6">
-                <div class="flex items-center gap-6 transform transition duration-300 hover:scale-105">
+                <!-- Movie Item 1 -->
+                <div class="movie-item flex items-center gap-6 transform transition duration-300 hover:scale-105">
                     <img src="https://assets.gadgets360cdn.com/pricee/assets/product/202306/Pushpa-2_1687776659.jpg" alt="Pushpa" class="w-24 h-32 rounded-lg shadow-lg">
                     <span class="font-medium text-lg text-white">Pushpa: The Rule</span>
                 </div>
-                <div class="flex items-center gap-6 transform transition duration-300 hover:scale-105">
+                <!-- Movie Item 2 -->
+                <div class="movie-item flex items-center gap-6 transform transition duration-300 hover:scale-105">
                     <img src="https://m.media-amazon.com/images/M/MV5BMGVmMjdlNzUtNWEzZS00YmM3LWJhM2EtMDkwNTVmMDk0ZmY0XkEyXkFqcGc@._V1_.jpg" alt="KGF" class="w-24 h-32 rounded-lg shadow-lg">
-                    <span class="font-medium text-lg text-white">KGF: Chapter 3</span>
+                    <span class="font-medium text-lg text-white">KGF</span>
                 </div>
-                <div class="flex items-center gap-6 transform transition duration-300 hover:scale-105">
+                <!-- Movie Item 3 -->
+                <div class="movie-item flex items-center gap-6 transform transition duration-300 hover:scale-105">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuKhFfRL8nTknjuGnI7xQ3c3Qkn68cuM9Xtw&s" alt="RRR" class="w-24 h-32 rounded-lg shadow-lg">
+                    <span class="font-medium text-lg text-white">RRR</span>
+                </div>
+                <!-- Movie Item 4 -->
+                <div class="movie-item flex items-center gap-6 transform transition duration-300 hover:scale-105">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuKhFfRL8nTknjuGnI7xQ3c3Qkn68cuM9Xtw&s" alt="RRR Reloaded" class="w-24 h-32 rounded-lg shadow-lg">
                     <span class="font-medium text-lg text-white">RRR: Reloaded</span>
                 </div>
             </div>
-        </div>
-
-        <!-- Booking Section -->
-        <div class="bg-gray-800 shadow-2xl rounded-lg p-6 flex-1 hover:scale-105 transition-transform duration-300">
-            <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2024/07/avengers-doomsday-title-treatment.jpg" alt="avengers-doomsday" class="w-full rounded-lg mb-6 shadow-lg">
-            
-            <!-- Title: Booking will open soon -->
-            <div id="bookingTitle" class="text-center text-xl font-semibold text-teal-400 mb-6">Booking will open soon...</div>
-            
-            <!-- Timer -->
-            <div class="text-center text-3xl font-extrabold text-teal-400 mb-6" id="timer">02:00</div>
-            
-            <!-- Booking Status: Booking Open -->
-            <div id="bookingStatus" class="text-center text-xl font-semibold text-teal-400 mb-6 opacity-0">Booking Open</div>
-            
-            <!-- Booking Button -->
-            <button id="bookingButton" disabled class="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-3 rounded-lg opacity-50 cursor-not-allowed transition duration-300 hover:bg-gradient-to-r hover:from-yellow-600 hover:to-orange-600 hover:opacity-100">
-                Book Now
-            </button>
         </div>
     </div>
 
@@ -66,56 +126,18 @@
     </footer>
 
     <script>
-        // Countdown Timer
-        let countdownTime = 120; // Time in seconds (2 minutes)
-        const timerElement = document.getElementById('timer');
-        const bookingButton = document.getElementById('bookingButton');
-        const bookingStatus = document.getElementById('bookingStatus'); // New element reference
-        const bookingTitle = document.getElementById('bookingTitle'); // New title element
+        // Hamburger menu toggle
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const navModal = document.getElementById('nav-modal');
+        const closeIcon = document.getElementById('close-icon');
 
-        // Format time function to convert seconds to MM:SS
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const secs = seconds % 60;
-            return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-        }
+        hamburgerIcon.addEventListener('click', () => {
+            navModal.classList.add('active'); // Show modal
+        });
 
-        // Start the countdown timer
-        function startCountdown() {
-            // Initially set the timer display to 2:00
-            timerElement.textContent = formatTime(countdownTime);
-
-            // Decrement the time every second
-            const interval = setInterval(() => {
-                countdownTime--; // Decrease the countdown time by 1 second
-                timerElement.textContent = formatTime(countdownTime); // Update the display
-
-                if (countdownTime <= 0) {
-                    clearInterval(interval); // Stop the timer when it reaches 0
-                    timerElement.textContent = "00:00"; // Display 00:00
-                    bookingButton.disabled = false; // Enable the booking button
-                    bookingButton.classList.remove('opacity-50', 'cursor-not-allowed');
-                    bookingButton.classList.add('cursor-pointer');
-                    
-                    // Change the title to "Booking Open"
-                    bookingTitle.classList.add('opacity-0'); // Hide the "Booking will open soon..." message
-                    bookingStatus.classList.remove('opacity-0'); // Show the "Booking Open" message
-                    
-                    // Redirect when the button is clicked
-                    bookingButton.addEventListener('click', () => {
-                        window.location.href = "https://example.com/pushpa-booking";
-                    });
-                }
-            }, 1000); // Run every second (1000 milliseconds)
-        }
-
-        // Start the countdown when the page loads
-        startCountdown();
-
-        // GSAP Animations
-        gsap.from("nav", { duration: 1, y: -100, opacity: 0, ease: "bounce" });
-        gsap.from(".container", { duration: 1, opacity: 0, y: 50, stagger: 0.3 });
-        gsap.from("footer", { duration: 1, y: 50, opacity: 0 });
+        closeIcon.addEventListener('click', () => {
+            navModal.classList.remove('active'); // Hide modal
+        });
     </script>
 </body>
 </html>
